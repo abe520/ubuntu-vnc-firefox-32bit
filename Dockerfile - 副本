@@ -31,29 +31,35 @@ ENV HOME=/home/testup \
 WORKDIR $INST_SCRIPTS
 
 ### Install some common tools
+
 ADD src/install/tools.sh .
-RUN ./tools.sh
+RUN chmod uga+x ./tools.sh \
+    ./tools.sh
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ### Install custom fonts
 ADD src/install/install_custom_fonts.sh .
-RUN ./install_custom_fonts.sh
+RUN chmod uga+x ./install_custom_fonts.sh \
+    ./install_custom_fonts.sh
 
 ### Install xvnc-server - HTML5 based VNC viewer
 ADD src/install/tigervnc.sh .
-RUN ./tigervnc.sh
+RUN chmod uga+x ./tigervnc.sh \
+    ./tigervnc.sh
 
 ### Install xfce UI
 ADD src/install/xfce_ui.sh .
-RUN $INST_SCRIPTS/xfce_ui.sh
+RUN chmod uga+x $INST_SCRIPTS/xfce_ui.sh \
+    $INST_SCRIPTS/xfce_ui.sh
 
 ### Install user stuff
-RUN apt install -y libreoffice
-RUN apt install -y jq xclip claws-mail xvkbd
+#RUN apt install -y libreoffice
+#RUN apt install -y jq xclip claws-mail xvkbd
 
 ### Install firefox and chrome browser
 ADD src/install/firefox.sh .
-RUN $INST_SCRIPTS/firefox.sh
+RUN chmod uga+x $INST_SCRIPTS/firefox.sh \
+    $INST_SCRIPTS/firefox.sh
 
 #ADD src/install/chrome.sh .
 #RUN $INST_SCRIPTS/chrome.sh
@@ -63,7 +69,8 @@ RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
 ADD ./src/xfce/ /home/testup
 
 ADD src/install/set_user_permission.sh .
-RUN ./set_user_permission.sh
+RUN chmod uga+x ./set_user_permission.sh \
+    ./set_user_permission.sh
 
 ### configure startup
 ADD src/scripts $STARTUPDIR
