@@ -53,17 +53,17 @@ RUN chmod uga+x $INST_SCRIPTS/xfce_ui.sh
 RUN $INST_SCRIPTS/xfce_ui.sh
 
 ### Install user stuff
-RUN apt install -y libreoffice
-RUN apt install -y jq xclip claws-mail xvkbd
+#RUN apt install -y libreoffice
+#RUN apt install -y jq xclip claws-mail xvkbd
 
 ### Install firefox and chrome browser
 ADD src/install/firefox.sh .
 RUN chmod uga+x $INST_SCRIPTS/firefox.sh
 RUN $INST_SCRIPTS/firefox.sh
 
-ADD src/install/chrome.sh .
-RUN chmod uga+x $INST_SCRIPTS/chrome.sh
-RUN $INST_SCRIPTS/chrome.sh
+#ADD src/install/chrome.sh .
+#RUN chmod uga+x $INST_SCRIPTS/chrome.sh
+#RUN $INST_SCRIPTS/chrome.sh
 
 ### Setup user
 RUN useradd -u 1000 -m -s /bin/bash -G sudo testup
